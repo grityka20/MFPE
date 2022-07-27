@@ -1,0 +1,27 @@
+server:
+  port: 8008
+  
+  
+  
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: consumer-service
+        uri:
+          http://localhost/8000
+        predicates:
+        - Path=/consumer/**
+      - id: policy-service
+        uri:
+          http://localhost/8002
+        predicates:
+        - Path=/policy/**
+      - id: quotes-service
+        uri:
+          http://localhost/8004
+        predicates:
+        - Path=/quotes/**
+  application:
+    name: api-gateway
+        
